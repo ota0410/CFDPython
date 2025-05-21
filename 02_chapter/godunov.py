@@ -38,6 +38,13 @@ def MC(q, c, dt, dx, j):
     c = 0.5 * (ur + ul)
     return 0.5 * (fr + fl - np.sign(c) * (fr - fl))
 
+### This function doesn't use if else structure
+def GODUNOV(q, c, dt, dx, j):
+    qm = 0.5 * (q[j] + np.abs(q[j]))
+    qp = 0.5 * (q[j+1] - np.abs(q[j+1]))
+    return np.max([0.5 * qm**2, 0.5 * qp**2])
+    
+
 c = 1
 dt = 0.05
 dx = 0.1
@@ -48,4 +55,4 @@ nmax = 10
 q1 = -1
 q2 = 1
 x, q = init(q1, q2, dx, jmax)
-do_computing(x, q, dt, dx, nmax, MC, interval=2)
+do_computing(x, q, dt, dx, nmax, GODUNOV, interval=2)

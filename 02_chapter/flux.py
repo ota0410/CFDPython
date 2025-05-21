@@ -54,7 +54,8 @@ def do_computing(x,q,c,dt,dx,nmax,ff):
     plt.xlabel('x')
     plt.ylabel('q')
     plt.legend()
-    plt.show()
+    plt.savefig('output_plot.png')
+    #plt.show()
 
     
 
